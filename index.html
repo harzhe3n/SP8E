@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SP8E</title>
+  <!-- Google Font for old British style -->
+  <link href="https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Profile Section -->
+  <div class="profile">
+    <img src="photo_2026-02-21_04-27-58.jpg" alt="Profile Picture">
+    <h1>@harzhe3n</h1>
+   
+    <p style="font-family: inherit;">I will take what is mine - with fire and blood</p>
+   
+  </div>
+
+  <!-- Social Links Section -->
+  <div class="social-links">
+    <a href="https://www.instagram.com/harzhe3n" target="_blank">
+      <img src="insta.jpg" alt="Instagram Logo"> Instagram
+    </a>
+    <a href="https://www.tiktok.com/@MS4wLjABAAAAn2TRtSPtenYt-KDXlqpluuR-xSvElCZuD7b7C6IhDWDO-TsxZQxgJLIBU05cZWd6" target="_blank">
+      <img src="tt.jpg" alt="TikTok Logo"> TikTok
+    </a>
+    <a href="https://www.snapchat.com/add/harzhe3n" target="_blank">
+      <img src="snap.jpg" alt="Snapchat Logo"> Snapchat
+    </a>
+  </div>
+
+  <!-- Motto -->
+  <div class="motto">
+   
+  </div>
+
+  <!-- Music Player using hidden video -->
+  <div class="music-player">
+    <img src="Screenshot 2026-02-21 042147.png" alt="Song Thumbnail" class="music-thumb">
+    
+    <!-- Hidden video for audio only -->
+    <video id="myVideoAudio" style="display:none" loop>
+      <source src="song.mp3" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+
+    <!-- Controls -->
+    <div class="music-controls">
+      <button class="music-toggle" id="videoToggle">▶</button>
+      <button class="music-replay" id="videoReplay">⟳</button> <!-- Replay button -->
+    </div>
+  </div>
+
+  <script>
+    const video = document.getElementById('myVideoAudio');
+    const toggleBtn = document.getElementById('videoToggle');
+    const replayBtn = document.getElementById('videoReplay');
+
+    // Play/Pause toggle
+    toggleBtn.addEventListener('click', () => {
+      if (video.paused) {
+        video.play();
+        toggleBtn.textContent = '⏸';
+      } else {
+        video.pause();
+        toggleBtn.textContent = '▶';
+      }
+    });
+
+    // Replay button
+    replayBtn.addEventListener('click', () => {
+      video.currentTime = 0; // rewind to start
+      video.play();
+      toggleBtn.textContent = '⏸'; // show pause symbol
+    });
+  </script>
+
+</body>
+</html>

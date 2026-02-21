@@ -1,0 +1,119 @@
+/* General Page Styling */
+body {
+  margin: 0;
+  padding: 0;
+  font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  text-align: center;
+  color: #ffe8e8;
+  background: url('Princess Knight GIF.gif') no-repeat center center fixed;
+  background-size: cover;
+  position: relative;
+}
+
+/* Profile Section */
+.profile {
+  padding: 50px 20px 20px 20px;
+}
+
+.profile img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  border: 3px solid #5d5d5d;
+  object-fit: cover;
+  margin-bottom: 20px;
+}
+
+.profile h1 {
+  margin: 10px 0 5px 0;
+  font-size: 2em;
+}
+
+.profile p {
+  font-size: 1.2em;
+  margin: 0;
+}
+
+/* Social Links Section */
+.social-links {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 30px;
+}
+
+.social-links a {
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
+  padding: 10px 20px;
+  background-color: rgba(0,0,0,0.6);
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 50px;
+  transition: all 0.3s ease;
+}
+
+.social-links a img {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+}
+
+.social-links a:hover {
+  background-color: #531111;
+  transform: scale(1.05);
+}
+
+/* Motto */
+wa7d {
+    font-family: "UnifrakturCook", "Old English Text MT", cursive;
+}
+
+/* Music Player */
+.music-player {
+  position: fixed;
+  bottom: 50px;
+  right: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.music-player .music-thumb {
+  width: 80px;
+  height: 80px;
+  border-radius: 10px;
+  margin-bottom: 5px;
+  object-fit: cover;
+  border: 2px solid #fff;
+}
+
+/* Music Controls */
+.music-controls {
+  display: flex;
+  gap: 10px; /* space between buttons */
+}
+
+.music-toggle,
+.music-replay {
+  padding: 5px 10px;
+  background-color: #000;  /* black button */
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.2em;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  outline: none;
+}
+
+.music-toggle:hover,
+.music-replay:hover {
+  background-color: #ff4500;
+}
