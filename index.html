@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SP8E</title>
+  <link href="https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Profile Section -->
+  <div class="profile">
+    <img src="photo_2026-02-21_04-27-58.jpg" alt="Profile Picture">
+    <h1>@harzhe3n</h1>
+    <p>I will take what is mine - with fire and blood</p>
+  </div>
+
+  <!-- Social Links -->
+  <div class="social-links">
+    <a href="https://www.instagram.com/harzhe3n" target="_blank">
+      <img src="free-instagram-logo-7761836-6182428.gif" alt="Instagram Logo"> Instagram
+    </a>
+    <a href="https://www.tiktok.com/@MS4wLjABAAAAn2TRtSPtenYt-KDXlqpluuR-xSvElCZuD7b7C6IhDWDO-TsxZQxgJLIBU05cZWd6" target="_blank">
+      <img src="tt.jpg" alt="TikTok Logo"> TikTok
+    </a>
+    <a href="https://www.snapchat.com/add/harzhe3n" target="_blank">
+      <img src="snap.jpg" alt="Snapchat Logo"> Snapchat
+    </a>
+    <a href="https://www.instagram.com/harzhe3n" target="_blank">
+      <img src="372108630_DISCORD_LOGO_BLACK_400.gif" alt="Discord logo"> Our Discord
+    </a>
+  </div>
+
+  <!-- Divider -->
+  <div class="divider"></div>
+
+  <!-- Start & End Game Buttons -->
+  <div class="start-game-container">
+    <button id="startGameBtn">Start Game</button>
+    <button id="endGameBtn" style="display:none;">End Game</button>
+  </div>
+
+  <!-- Dino Game Container -->
+  <div class="game-container">
+    <div class="dino"></div>
+    <div class="score">0</div>
+  </div>
+
+  <!-- Music Player -->
+  <div class="music-player">
+    <img src="Screenshot 2026-02-21 042147.png" alt="Song Thumbnail" class="music-thumb">
+    <audio id="myAudio" loop>
+      <source src="song.mp3" type="audio/mpeg">
+    </audio>
+    <div class="music-controls">
+      <button class="music-toggle" id="audioToggle">▶</button>
+      <button class="music-replay" id="audioReplay">⟳</button>
+    </div>
+  </div>
+
+  <!-- Anonymous Message Box -->
+  <div class="anonymous-box">
+    <button id="anonToggle">
+      <img src="logo.5eeb0df55962.png" alt="leave an anonymous comment" width="50" height="50">
+    </button>
+
+    <form 
+      action="https://formspree.io/f/mlgwozgn"
+      method="POST"
+      class="anon-form"
+      id="anonForm"
+    >
+      <textarea 
+        name="message"
+        placeholder="Type your anonymous message here..."
+        required>
+      </textarea>
+
+      <button type="submit" class="send-btn">Send</button>
+    </form>
+  </div>
+
+  <!-- JavaScript -->
+  <script>
+    // Music Controls
+    const audio = document.getElementById('myAudio');
+    const toggleBtn = document.getElementById('audioToggle');
+    const replayBtn = document.getElementById('audioReplay');
+
+    toggleBtn.addEventListener('click', () => {
+      if (audio.paused) {
+        audio.play();
+        toggleBtn.textContent = '⏸';
+      } else {
+        audio.pause();
+        toggleBtn.textContent = '▶';
+      }
+    });
+
+    replayBtn.addEventListener('click', () => {
+      audio.currentTime = 0;
+      audio.play();
+      toggleBtn.textContent = '⏸';
+    });
+
+    // Anonymous Form Toggle & Submit
+    const anonToggle = document.getElementById('anonToggle');
+    const anonForm = document.getElementById('anonForm');
+
+    anonToggle.addEventListener('click', () => {
+      if (anonForm.style.display === "flex") {
+        anonForm.style.display = "none";
+      } else {
+        anonForm.style.display = "flex";
+        anonForm.style.flexDirection = "column";
+      }
+    });
+
+    anonForm.addEventListener("submit", function(event) {
+      event.preventDefault();
+      fetch(anonForm.action, {
+        method: "POST",
+        body: new FormData(anonForm),
+        headers: { 'Accept': 'application/json' }
+      }).then(response => {
+        if (response.ok) {
+          anonForm.reset();
+          anonForm.style.display = "none";
+          alert("Message sent successfully 🔥");
+        } else {
+          alert("Something went wrong.");
+        }
+      });
+    });
+
+    // =====================
+    // Dino Game Logic
+    // =====================
+    const dino = document.querySelector('.dino');
+    const gameContainer = document.querySelector('.game-container');
+    const scoreElem = document.querySelector('.score');
+    const startBtn = document.getElementById('startGameBtn');
+    const endBtn = document.getElementById('endGameBtn');
+
+    let isJumping = false;
+    let score = 0;
+    let obstacles = []; // keep track of obstacles intervals
+
+    function jump() {
+      if (isJumping) return;
+      isJumping = true;
+      let position = 0;
+      let upInterval = setInterval(() => {
+        if (position >= 100) {
+          clearInterval(upInterval);
+          let downInterval = setInterval(() => {
+            if (position <= 0) {
+              clearInterval(downInterval);
+              isJumping = false;
+            }
+            position -= 5;
+            dino.style.bottom = position + 'px';
+          }, 20);
+        }
+        position += 5;
+        dino.style.bottom = position + 'px';
+      }, 20);
+    }
+
+    // Keyboard jump
+    document.addEventListener('keydown', e => {
+      if (e.code === 'Space') jump();
+    });
+
+    // Mobile tap jump
+    gameContainer.addEventListener('touchstart', jump);
+
+    function createObstacle() {
+      const obstacle = document.createElement('div');
+      obstacle.classList.add('obstacle');
+      gameContainer.appendChild(obstacle);
+      let obstaclePosition = gameContainer.offsetWidth;
+      obstacle.style.left = obstaclePosition + 'px';
+
+      const moveInterval = setInterval(() => {
+        obstaclePosition -= 8;
+        obstacle.style.left = obstaclePosition + 'px';
+
+        const dinoBottom = parseInt(window.getComputedStyle(dino).bottom);
+        if (
+          obstaclePosition > 40 && obstaclePosition < 90 &&
+          dinoBottom < 40
+        ) {
+          alert("Game Over! Score: " + score);
+          obstacle.remove();
+          clearInterval(moveInterval);
+          score = 0;
+          scoreElem.textContent = score;
+          return;
+        }
+
+        if (obstaclePosition < -20) {
+          obstacle.remove();
+          clearInterval(moveInterval);
+          score++;
+          scoreElem.textContent = score;
+        }
+      }, 20);
+
+      obstacles.push(moveInterval);
+      setTimeout(createObstacle, Math.random() * 3000 + 1000);
+    }
+
+    // Start Game Button
+    startBtn.addEventListener('click', () => {
+      gameContainer.style.display = 'block';
+      startBtn.style.display = 'none';
+      endBtn.style.display = 'inline-block';
+      createObstacle();
+    });
+
+    // End Game Button
+    endBtn.addEventListener('click', () => {
+      gameContainer.style.display = 'none';
+      startBtn.style.display = 'inline-block';
+      endBtn.style.display = 'none';
+      score = 0;
+      scoreElem.textContent = score;
+
+      // remove obstacles and intervals
+      document.querySelectorAll('.obstacle').forEach(ob => ob.remove());
+      obstacles.forEach(id => clearInterval(id));
+      obstacles = [];
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,258 @@
+/* General Page Styling */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  text-align: center;
+  color: #ffe8e8;
+  background: url('Ayxk.gif') no-repeat center center fixed;
+  background-size: cover;
+  position: relative;
+}
+
+/* Profile Section */
+.profile {
+  padding: 50px 20px 20px 20px;
+}
+
+.profile img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  border: 3px solid #ffd900;
+  object-fit: cover;
+  margin-bottom: 20px;
+}
+
+.profile h1 {
+  margin: 10px 0 5px 0;
+  font-size: 2em;
+}
+
+.profile p {
+  font-size: 1.0em;
+  margin: 4;
+  font-family: "UnifrakturCook", "Old English Text MT", cursive;
+}
+
+/* Divider Line */
+.divider {
+  width: 60%;
+  margin: 20px auto;
+  border: 1px solid #ffd900;
+  opacity: 0.7;
+}
+
+/* Social Links Section */
+.social-links {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 30px;
+}
+
+.social-links a {
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
+  padding: 10px 20px;
+  background-color: rgba(255, 255, 255, 0.6);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 50px;
+  transition: all 0.3s ease;
+}
+
+.social-links a img {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+}
+
+.social-links a:hover {
+  background-color: #fffb00;
+  transform: scale(1.05);
+}
+
+/* Music Player */
+.music-player {
+  position: fixed;
+  bottom: 50px;
+  right: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.music-player .music-thumb {
+  width: 80px;
+  height: 80px;
+  border-radius: 10px;
+  margin-bottom: 5px;
+  object-fit: cover;
+  border: 2px solid #fff;
+}
+
+.music-controls {
+  display: flex;
+  gap: 10px;
+}
+
+.music-toggle,
+.music-replay {
+  padding: 5px 10px;
+  background-color: #000;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.2em;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  appearance: none;
+  outline: none;
+}
+
+.music-toggle:hover,
+.music-replay:hover {
+  background-color: #ff4500;
+}
+
+/* Anonymous Message Section */
+.anonymous-box {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+#anonToggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+#anonToggle img {
+  width: 50px;
+  height: 50px;
+  transition: transform 0.3s ease;
+}
+
+#anonToggle img:hover {
+  transform: scale(1.1);
+}
+
+.anon-form {
+  display: none;
+  flex-direction: column;
+  margin-top: 10px;
+  background: #fff;
+  padding: 12px;
+  border-radius: 10px;
+  border: 2px solid #ffd900;
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+}
+
+.anon-form textarea {
+  width: 220px;
+  height: 90px;
+  resize: none;
+  border-radius: 8px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  font-family: Arial, sans-serif;
+  font-size: 0.9em;
+  outline: none;
+}
+
+.send-btn {
+  margin-top: 8px;
+  padding: 6px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  background-color: #000;
+  color: #fff;
+  transition: all 0.3s ease;
+}
+
+.send-btn:hover {
+  background-color: #ff4500;
+}
+
+/* Dino Game Styling */
+.game-container {
+  position: relative;
+  width: 800px;
+  max-width: 95%;
+  height: 150px;
+  margin: 20px auto;
+  background-color: #fff;
+  overflow: hidden;
+  border: 2px solid #ffd900;
+}
+
+.dino {
+  position: absolute;
+  bottom: 0;
+  left: 50px;
+  width: 40px;
+  height: 40px;
+  background-color: green;
+}
+
+.obstacle {
+  position: absolute;
+  bottom: 0;
+  width: 20px;
+  height: 40px;
+  background-color: brown;
+}
+
+.score {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  font-size: 18px;
+  font-weight: bold;
+}
+/* Start Game Button */
+.start-game-container {
+  margin: 10px auto;
+}
+
+#startGameBtn {
+  padding: 10px 20px;
+  font-size: 1em;
+  background-color: #000;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+#startGameBtn:hover {
+  background-color: #ff4500;
+}
+
+/* Hide game initially */
+.game-container {
+  display: none;
+}
+#endGameBtn {
+  padding: 10px 20px;
+  font-size: 1em;
+  background-color: #000;
+  color: #ff0000;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-left: 10px;
+}
+
+#endGameBtn:hover {
+  background-color: #ff4500;
+}
